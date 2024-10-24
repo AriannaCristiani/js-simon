@@ -10,10 +10,14 @@ const inputGroup = document.getElementById('input-group')
 const numberList = document.getElementById('number-list')
 
 
+
+
+
+
 //numeri random da pc
 function getRandomInt(max) {
     return Math.floor(Math.random() * 50);
-  }
+}
 
 let elementList1 = document.getElementById('element-list-1')
 elementList1.innerHTML = `${Math.floor(Math.random() * 50)}`
@@ -30,3 +34,22 @@ elementList4.innerHTML = `${Math.floor(Math.random() * 50)}`
 let elementList5 = document.getElementById('element-list-5')
 elementList5.innerHTML = `${Math.floor(Math.random() * 50)}`
 
+
+
+//timer
+
+const counter = document.getElementById('countdown')
+
+let timer;
+
+count = 0;
+counter.innerText = count;
+
+
+timer = setInterval(() => {
+counter.innerText = ++count;
+}, 1000);
+
+setTimeout(function () {
+  clearInterval(timer);
+}, 30_000);
