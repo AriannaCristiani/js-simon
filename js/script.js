@@ -42,14 +42,17 @@ const counter = document.getElementById('countdown')
 
 let timer;
 
-count = 0;
+count = 30;
 counter.innerText = count;
 
 
 timer = setInterval(() => {
-counter.innerText = ++count;
+counter.innerText = --count;
 }, 1000);
 
 setTimeout(function () {
   clearInterval(timer);
 }, 30_000);
+
+
+//a 30 secondi far s
