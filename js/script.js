@@ -13,6 +13,9 @@ const numbersList = document.getElementById('numbers-list')
 
 const answerForm = document.getElementById('answer-form')
 
+const instructions = document.getElementById('instructions');
+
+
 
 
 //numeri random da pc
@@ -43,22 +46,23 @@ for (let i = 0 ; i < numberPc; i ++){
 
 const counter = document.getElementById('countdown')
 
-let timer;
+let timer = 30;
 
-count = 30;
-counter.innerText = count;
+counter.innerText = timer
+
+const interval = setInterval(function () {
+  timer = timer - 1;
+  counter.innerText = timer;
+  if (timer === 0) {
+    clearInterval(interval);
+
+    numbersList.classList.add('d-none');
+    instructions.innerText = 'Quanti numeri riesci a ricordare?';
+    answerForm.classList.remove('d-none');
+  }
+}, 1_000);
 
 
-timer = setInterval(() => {
-counter.innerText = --count;
-}, 1000);
-
-setTimeout(function () {
-  clearInterval(timer);
-}, 30_000);
-
-
-//a 30 secondi far sparire i numeri random e far apparire il form
 
 
 
