@@ -5,34 +5,37 @@
 //5) confrontare i due array e verificare quali e quanti numeri coinbacino
 //6) far apparire in pagina il risultato di quest'ultimo calcolo
 
+//elementi del DOM
+
 const inputGroup = document.getElementById('input-group')
 
-const numberList = document.getElementById('number-list')
+const numbersList = document.getElementById('numbers-list')
 
-
-
+const answerForm = document.getElementById('answer-form')
 
 
 
 //numeri random da pc
-function getRandomInt(max) {
-    return Math.floor(Math.random() * 50);
+
+const arrayNumbers = [];
+const numberPc = 5;
+let min = 0;
+let max = 50;
+
+function generateRandomNumbers (min , max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-let elementList1 = document.getElementById('element-list-1')
-elementList1.innerHTML = `${Math.floor(Math.random() * 50)}`
 
-let elementList2 = document.getElementById('element-list-2')
-elementList2.innerHTML = `${Math.floor(Math.random() * 50)}`
+for (let i = 0 ; i < numberPc; i ++){
+    const randomNumbers = generateRandomNumbers(min , max);
 
-let elementList3 = document.getElementById('element-list-3')
-elementList3.innerHTML = `${Math.floor(Math.random() * 50)}`
+    arrayNumbers.push (randomNumbers);
 
-let elementList4 = document.getElementById('element-list-4')
-elementList4.innerHTML = `${Math.floor(Math.random() * 50)}`
+    numbersList.innerHTML += `<li> ${randomNumbers} </li>`;
+}
 
-let elementList5 = document.getElementById('element-list-5')
-elementList5.innerHTML = `${Math.floor(Math.random() * 50)}`
+
 
 
 
@@ -55,4 +58,9 @@ setTimeout(function () {
 }, 30_000);
 
 
-//a 30 secondi far s
+//a 30 secondi far sparire i numeri random e far apparire il form
+
+
+
+
+
