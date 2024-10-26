@@ -15,6 +15,9 @@ const answerForm = document.getElementById('answers-form')
 
 const instructions = document.getElementById('instructions');
 
+const message = document.getElementById('message');
+
+
 
 
 
@@ -25,7 +28,7 @@ const numberPc = 5;
 let min = 1;
 let max = 50;
 
-function generateRandomNumbers (min , max){
+function generateRandomNumbers(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -37,13 +40,13 @@ function generateRandomNumbers (min , max){
 
 while (arrayNumbers.length < numberPc) {
 
-  const randomNumbers = generateRandomNumbers(min , max);
-  
-  if (!arrayNumbers.includes(randomNumbers)){
+  const randomNumbers = generateRandomNumbers(min, max);
+
+  if (!arrayNumbers.includes(randomNumbers)) {
     arrayNumbers.push(randomNumbers)
     numbersList.innerHTML += `<li> ${randomNumbers} </li>`;
   }
-  
+
 }
 
 
@@ -73,19 +76,46 @@ const interval = setInterval(function () {
 
 //confronto di array
 
-answerForm.addEventListener ('submit', function(event) {
+answerForm.addEventListener('submit', function (event) {
   event.preventDefault();
 
   let currentCount = 0;
   const userNumbers = []
 
-  for (let i = 0 ; i < inputGroup.lenght ; i++){
-    const currentElement = inputGroup [i];
-    //console.log(currentElement.value)
+  for (let i = 0; i < inputGroup.lenght; i++) {
+    const currentElement = parseInt.apply(inputGroup[i].value);
+
+    if (!isNan(currentElement) &&
+      currentElement >= min &&
+      currentElement <= max &&
+      !userNumbers.includes(currentElement)
+    ) {
+      userNumbers.push(currentElement);
+    }
   }
 
 
-})
+  if (userNumbers.length !== numberPc) {
+    message.innerContent = 'Qualcosa non va, ricontrolla i numeri inseriti';
+  }
+
+  for (let i = 0 ; i < userNumbers.length ; i ++){
+    const userNumbersValue = userNumbers[i];
+
+    if (arrayNumbers.includes(userNumbersValue)){
+      currentCount++;
+    }
+  }
+
+    if (currentCount > 0){
+      message.classList.remove('text-danger');
+      message.classList.add('text success');
+    }
+
+  message.textContent =`Hai indovinato ${currentCount} numeri su ${numberPc}`;
+
+
+});
 
 
 
