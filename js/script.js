@@ -7,11 +7,11 @@
 
 //elementi del DOM
 
-const inputGroup = document.getElementById('input-group')
+const inputGroup = document.querySelectorAll('#input-group input')
 
 const numbersList = document.getElementById('numbers-list')
 
-const answerForm = document.getElementById('answer-form')
+const answerForm = document.getElementById('answers-form')
 
 const instructions = document.getElementById('instructions');
 
@@ -22,7 +22,7 @@ const instructions = document.getElementById('instructions');
 
 const arrayNumbers = [];
 const numberPc = 5;
-let min = 0;
+let min = 1;
 let max = 50;
 
 function generateRandomNumbers (min , max){
@@ -30,12 +30,20 @@ function generateRandomNumbers (min , max){
 }
 
 
-for (let i = 0 ; i < numberPc; i ++){
-    const randomNumbers = generateRandomNumbers(min , max);
+// for (let i = 0 ; i < numberPc; i ++){
+//     const randomNumbers = generateRandomNumbers(min , max);
+//     arrayNumbers.push (randomNumbers);
+// }
 
-    arrayNumbers.push (randomNumbers);
+while (arrayNumbers.length < numberPc) {
 
+  const randomNumbers = generateRandomNumbers(min , max);
+  
+  if (!arrayNumbers.includes(randomNumbers)){
+    arrayNumbers.push(randomNumbers)
     numbersList.innerHTML += `<li> ${randomNumbers} </li>`;
+  }
+  
 }
 
 
@@ -46,7 +54,7 @@ for (let i = 0 ; i < numberPc; i ++){
 
 const counter = document.getElementById('countdown')
 
-let timer = 30;
+let timer = 3;
 
 counter.innerText = timer
 
@@ -63,7 +71,21 @@ const interval = setInterval(function () {
 }, 1_000);
 
 
+//confronto di array
 
+answerForm.addEventListener ('submit', function(event) {
+  event.preventDefault();
+
+  let currentCount = 0;
+  const userNumbers = []
+
+  for (let i = 0 ; i < inputGroup.lenght ; i++){
+    const currentElement = inputGroup [i];
+    //console.log(currentElement.value)
+  }
+
+
+})
 
 
 
